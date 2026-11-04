@@ -1,0 +1,1 @@
+(()=>{let t;try{t=localStorage.getItem('rapid-theme')}catch(_){}document.documentElement.dataset.theme=['light','dark'].includes(t)?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')})();
