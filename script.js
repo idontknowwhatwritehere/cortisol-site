@@ -1,8 +1,8 @@
 'use strict';
 // Замените на утверждённое название проекта. Текст title и метатеги — в index.html.
 const PROJECT_NAME = 'Rapid Cortisol';
-// ВАЖНО: укажите реальный email Виктории. Пока строка пустая, отправка отключена.
-const CONTACT_EMAIL = '';
+// Текущий контактный адрес проекта.
+const CONTACT_EMAIL = 'vi-anchem@mail.ru';
 
 document.querySelectorAll('[data-project-name]').forEach(el => { el.textContent = PROJECT_NAME; });
 document.title = `${PROJECT_NAME} — кортизол в слюне`;
@@ -32,9 +32,26 @@ form.addEventListener('submit', event => {
   window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Обращение с сайта ${PROJECT_NAME}`)}&body=${encodeURIComponent(body)}`;
   status.textContent = 'Запрошено открытие почтового приложения. Проверьте письмо и отправьте его самостоятельно. Если приложение не открылось, воспользуйтесь контактным email.';
 });
-if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.08 });
-  document.querySelectorAll('.steps li, .technology-panel, .benefit-list li').forEach(el => { el.classList.add('reveal-ready'); observer.observe(el); });
+const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+if ('IntersectionObserver' in window) {
+  const blocks = document.querySelectorAll('.hero-copy, .hero-art, .section-heading, #product .product-layout, .steps li, .technology-panel, .specs, .research-note, .benefits > div, .benefit-list li, .analyzer-layout > div, #support > .eyebrow, #support > h2, .grant-text, .official-logo, .contact-layout > div, #contact-form');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      entry.target.classList.toggle('visible', entry.isIntersecting);
+    });
+  }, { threshold: 0 });
+  function configureMotion() {
+    observer.disconnect();
+    blocks.forEach(el => {
+      el.classList.remove('reveal-ready', 'visible');
+      if (!motionPreference.matches) {
+        el.classList.add('reveal-ready');
+        observer.observe(el);
+      }
+    });
+  }
+  configureMotion();
+  motionPreference.addEventListener('change', configureMotion);
 }
 
 // Тема сохраняется только в браузере посетителя. Без доступа к хранилищу переключение также работает.
