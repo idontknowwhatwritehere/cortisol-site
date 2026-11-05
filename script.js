@@ -61,7 +61,7 @@ let themeSelected = false;
 try { themeSelected = ['dark', 'light'].includes(localStorage.getItem('rapid-theme')); } catch (_) {}
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
-  document.querySelectorAll('.brand-logo').forEach(logo => { logo.src = theme === 'dark' ? 'assets/project-logo-dark.svg' : 'assets/project-logo.svg'; });
+  document.querySelectorAll('.brand-logo').forEach(logo => { logo.src = theme === 'dark' ? 'assets/project-logo-dark.svg?v=17' : 'assets/project-logo.svg?v=17'; });
   const dark = theme === 'dark';
   themeToggle.setAttribute('aria-pressed', String(dark));
   themeToggle.setAttribute('aria-label', dark ? 'Включить светлую тему' : 'Включить тёмную тему');
