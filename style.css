@@ -26,3 +26,7 @@ body{background:var(--page);font-weight:500;transition:background-color .45s eas
 @media(max-width:540px){.official-logo figcaption{font-size:13px;padding:12px;min-height:88px}}
 
 #contact-form textarea{max-height:300px;overflow-y:auto}
+
+#support > .eyebrow{font-size:16px;font-weight:800;letter-spacing:1.2px;line-height:1.5;color:var(--ink)}
+.brand-logo{display:block;width:72px;height:78px;object-fit:contain;flex-shrink:0;background:#fff;border-radius:6px;padding:4px}
+@media(max-width:540px){#support > .eyebrow{font-size:14px}.brand-logo{width:50px;height:54px}.brand{gap:8px}}
