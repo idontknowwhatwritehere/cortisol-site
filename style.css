@@ -37,3 +37,5 @@ body{background:var(--page);font-weight:500;transition:background-color .45s eas
 
 .brand-titles{display:flex;flex-direction:column;gap:5px}.brand-titles small{font-size:10px;font-weight:500;line-height:1.4;color:var(--muted);letter-spacing:0}.hero-note{line-height:1.7}
 @media(max-width:540px){.brand-titles small{font-size:9px;max-width:130px}}
+
+.specs strong{font-size:clamp(16px,1.8vw,20px);overflow-wrap:anywhere}.specs>div{min-width:0}
