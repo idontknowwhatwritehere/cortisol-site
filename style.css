@@ -21,3 +21,6 @@ body{background:var(--page);font-weight:500;transition:background-color .45s eas
 @media(prefers-reduced-motion:reduce){.reveal-ready{opacity:1;transform:none;transition:none}}
 
 .hero{grid-template-columns:1fr}.hero-copy{max-width:780px}.hero .lead{max-width:600px}
+
+.official-logo figcaption{font-size:15px;line-height:1.6;padding:16px;min-height:80px}
+@media(max-width:540px){.official-logo figcaption{font-size:13px;padding:12px;min-height:88px}}
