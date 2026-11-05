@@ -34,3 +34,6 @@ body{background:var(--page);font-weight:500;transition:background-color .45s eas
 .technology-panel .eyebrow{color:#a8dacf}
 
 .logos{align-items:stretch}.official-logo{display:flex;min-width:0}.support-link{display:flex;flex-direction:column;width:100%;height:100%}.support-link .supplied-logo{flex-shrink:0}.support-link .logo-caption{flex:1}.support-link:hover .logo-caption,.support-link:focus-visible .logo-caption{color:#fff;text-decoration:underline;text-underline-offset:4px;background:#263b33}.support-link:focus-visible{outline-offset:-4px}.contact-label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:4px}.footer-contacts{font-size:14px;overflow-wrap:anywhere}.footer-contacts strong{font-size:17px}.footer-contacts p{margin:14px 0 0}.footer-contacts a:hover{text-decoration:underline}
+
+.brand-titles{display:flex;flex-direction:column;gap:5px}.brand-titles small{font-size:10px;font-weight:500;line-height:1.4;color:var(--muted);letter-spacing:0}.hero-note{line-height:1.7}
+@media(max-width:540px){.brand-titles small{font-size:9px;max-width:130px}}
