@@ -24,3 +24,5 @@ body{background:var(--page);font-weight:500;transition:background-color .45s eas
 
 .official-logo figcaption{font-size:15px;line-height:1.6;padding:16px;min-height:80px}
 @media(max-width:540px){.official-logo figcaption{font-size:13px;padding:12px;min-height:88px}}
+
+#contact-form textarea{max-height:300px;overflow-y:auto}
