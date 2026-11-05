@@ -2,7 +2,7 @@
 // Замените на утверждённое название проекта. Текст title и метатеги — в index.html.
 const PROJECT_NAME = 'Rapid Cortisol';
 // Текущий контактный адрес проекта.
-const CONTACT_EMAIL = 'vi-anchem@mail.ru';
+const CONTACT_EMAIL = 't.senchenko.2005@mail.ru';
 
 document.querySelectorAll('[data-project-name]').forEach(el => { el.textContent = PROJECT_NAME; });
 document.title = `${PROJECT_NAME} — кортизол в слюне`;
