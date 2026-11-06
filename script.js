@@ -5,7 +5,7 @@ const PROJECT_NAME = 'Rapid Cortisol';
 const CONTACT_EMAIL = 'varombaeva@mail.ru';
 
 document.querySelectorAll('[data-project-name]').forEach(el => { el.textContent = PROJECT_NAME; });
-document.title = `${PROJECT_NAME} — кортизол в слюне`;
+document.title = `${PROJECT_NAME} для определения кортизола в слюне`;
 document.querySelector('#year').textContent = new Date().getFullYear();
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#navigation');
