@@ -563,4 +563,5 @@ h2{font-size:clamp(30px,3.4vw,44px);line-height:1.2;letter-spacing:-1.3px}
 }
 
 
-.hero{grid-template-columns:minmax(0,1fr)}.hero-copy{max-width:820px}
+/* Full-width hero glow without a visible edge at the content container. */
+.hero{background:none}main{background-image:radial-gradient(ellipse at 85% 100px,var(--glow) 0,transparent 68%);background-size:100% 760px;background-repeat:no-repeat}
