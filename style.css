@@ -583,3 +583,7 @@ h1,h2,h3{text-wrap:balance}.lead,.grant-text{text-wrap:pretty}.button{min-height
 #product{background:transparent}#workflow,#analyzer{background:var(--soft)}#support,#contacts{background:var(--page)}#support:before{content:none}
 #workflow{padding-bottom:28px}#analyzer{padding-top:28px}#support{padding-bottom:28px}#contacts{padding-top:28px}
 @media(max-width:540px){#workflow,#support{padding-bottom:22px}#analyzer,#contacts{padding-top:22px}}
+
+/* Opening screen ends at the viewport edge. */
+:root{--header-height:88px}.hero{min-height:calc(100vh - var(--header-height));min-height:calc(100svh - var(--header-height));align-content:center;box-sizing:border-box}
+@media(max-width:540px){:root{--header-height:76px}}

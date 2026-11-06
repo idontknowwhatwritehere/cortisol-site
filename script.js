@@ -148,3 +148,12 @@ window.addEventListener('scroll', scheduleNavigationUpdate, { passive: true });
 window.addEventListener('resize', scheduleNavigationUpdate);
 window.addEventListener('pageshow', scheduleNavigationUpdate);
 updateCurrentSection();
+
+// Точная высота первого экрана с учётом реальной высоты шапки.
+const siteHeader = document.querySelector('.header');
+function syncHeaderHeight() {
+  document.documentElement.style.setProperty('--header-height', `${siteHeader.getBoundingClientRect().height}px`);
+}
+syncHeaderHeight();
+if ('ResizeObserver' in window) new ResizeObserver(syncHeaderHeight).observe(siteHeader);
+else window.addEventListener('resize', syncHeaderHeight);
