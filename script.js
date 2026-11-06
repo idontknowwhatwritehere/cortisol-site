@@ -90,13 +90,17 @@ if (productGallery) {
   let timer;
   function showProductSlide(index) {
     currentSlide = (index + slides.length) % slides.length;
-    slides.forEach((slide, i) => { slide.hidden = i !== currentSlide; });
+    slides.forEach((slide, i) => {
+      slide.hidden = false;
+      slide.classList.toggle('is-active', i === currentSlide);
+      slide.setAttribute('aria-hidden', String(i !== currentSlide));
+    });
     dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === currentSlide)));
     productGallery.querySelector('.gallery-status').textContent = `${currentSlide + 1} / ${slides.length} · ${slides[currentSlide].querySelector('strong').textContent}`;
   }
   function scheduleSlides() {
     clearInterval(timer);
-    const stopped = paused || document.hidden || productGallery.matches(':hover, :focus-within');
+    const stopped = paused || document.hidden;
     productGallery.querySelector('.gallery-status').setAttribute('aria-live', stopped ? 'polite' : 'off');
     if (!stopped) timer = setInterval(() => showProductSlide(currentSlide + 1), 5000);
     playback.textContent = paused ? 'Продолжить' : 'Пауза';
@@ -112,9 +116,8 @@ if (productGallery) {
       event.preventDefault(); chooseSlide(currentSlide + (event.key === 'ArrowRight' ? 1 : -1));
     }
   });
-  ['mouseenter', 'mouseleave', 'focusin'].forEach(event => productGallery.addEventListener(event, scheduleSlides));
-  productGallery.addEventListener('focusout', () => setTimeout(scheduleSlides, 0));
   document.addEventListener('visibilitychange', scheduleSlides);
   reduceMotion.addEventListener('change', () => { paused = reduceMotion.matches; scheduleSlides(); });
+  showProductSlide(0);
   scheduleSlides();
 }
