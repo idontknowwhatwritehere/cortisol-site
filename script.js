@@ -78,22 +78,43 @@ themeToggle.addEventListener('click', () => {
 });
 themePreference.addEventListener('change', event => { if (!themeSelected) applyTheme(event.matches ? 'dark' : 'light'); });
 
-// Галерея компонентов: ручное переключение, включая клавиши стрелок.
+// Концепция компонентов: последовательная смена и ручное управление.
 const productGallery = document.querySelector('.product-gallery');
 if (productGallery) {
   const slides = Array.from(productGallery.querySelectorAll('.gallery-slide'));
+  const dots = Array.from(productGallery.querySelectorAll('.gallery-dots button'));
+  const playback = productGallery.querySelector('.gallery-playback');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let currentSlide = 0;
+  let paused = reduceMotion.matches;
+  let timer;
   function showProductSlide(index) {
     currentSlide = (index + slides.length) % slides.length;
     slides.forEach((slide, i) => { slide.hidden = i !== currentSlide; });
+    dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === currentSlide)));
     productGallery.querySelector('.gallery-status').textContent = `${currentSlide + 1} / ${slides.length} · ${slides[currentSlide].querySelector('strong').textContent}`;
   }
-  productGallery.querySelector('.gallery-prev').addEventListener('click', () => showProductSlide(currentSlide - 1));
-  productGallery.querySelector('.gallery-next').addEventListener('click', () => showProductSlide(currentSlide + 1));
+  function scheduleSlides() {
+    clearInterval(timer);
+    const stopped = paused || document.hidden || productGallery.matches(':hover, :focus-within');
+    productGallery.querySelector('.gallery-status').setAttribute('aria-live', stopped ? 'polite' : 'off');
+    if (!stopped) timer = setInterval(() => showProductSlide(currentSlide + 1), 5000);
+    playback.textContent = paused ? 'Продолжить' : 'Пауза';
+    playback.setAttribute('aria-label', paused ? 'Продолжить смену слайдов' : 'Приостановить смену слайдов');
+  }
+  function chooseSlide(index) { showProductSlide(index); scheduleSlides(); }
+  productGallery.querySelector('.gallery-prev').addEventListener('click', () => chooseSlide(currentSlide - 1));
+  productGallery.querySelector('.gallery-next').addEventListener('click', () => chooseSlide(currentSlide + 1));
+  dots.forEach((dot, i) => dot.addEventListener('click', () => chooseSlide(i)));
+  playback.addEventListener('click', () => { paused = !paused; scheduleSlides(); });
   productGallery.addEventListener('keydown', event => {
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-      event.preventDefault();
-      showProductSlide(currentSlide + (event.key === 'ArrowRight' ? 1 : -1));
+      event.preventDefault(); chooseSlide(currentSlide + (event.key === 'ArrowRight' ? 1 : -1));
     }
   });
+  ['mouseenter', 'mouseleave', 'focusin'].forEach(event => productGallery.addEventListener(event, scheduleSlides));
+  productGallery.addEventListener('focusout', () => setTimeout(scheduleSlides, 0));
+  document.addEventListener('visibilitychange', scheduleSlides);
+  reduceMotion.addEventListener('change', () => { paused = reduceMotion.matches; scheduleSlides(); });
+  scheduleSlides();
 }
