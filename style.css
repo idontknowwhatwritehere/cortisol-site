@@ -579,7 +579,7 @@ h1,h2,h3{text-wrap:balance}.lead,.grant-text{text-wrap:pretty}.button{min-height
 
 #support .support-layout{margin-top:0;align-items:start;gap:40px}.support-copy h2{margin-bottom:20px}.support-copy .grant-text{margin-bottom:0}#support .logos{margin-top:0}@media(max-width:800px){#support .support-layout{gap:24px}.support-copy h2{margin-bottom:16px}}
 
-/* Full-width section backgrounds */
-:root{--band-product:#edf3f8;--band-workflow:#e5f2ee;--band-analyzer:#fff;--band-support:#f0edf7;--band-contacts:#e8f0f3}
-:root[data-theme=dark]{--band-product:#152433;--band-workflow:#122e2c;--band-analyzer:#101b27;--band-support:#262338;--band-contacts:#182b35}
-#product{background:var(--band-product)}#workflow{background:var(--band-workflow)}#analyzer{background:var(--band-analyzer)}#support{background:var(--band-support)}#contacts{background:var(--band-contacts)}#support:before{content:none}
+/* Broad visual zones: related sections share one background. */
+#product{background:transparent}#workflow,#analyzer{background:var(--soft)}#support,#contacts{background:var(--page)}#support:before{content:none}
+#workflow{padding-bottom:28px}#analyzer{padding-top:28px}#support{padding-bottom:28px}#contacts{padding-top:28px}
+@media(max-width:540px){#workflow,#support{padding-bottom:22px}#analyzer,#contacts{padding-top:22px}}
