@@ -124,3 +124,27 @@ if (productGallery) {
   showProductSlide(0);
   scheduleSlides();
 }
+
+// Подсветка раздела, который сейчас читает посетитель.
+const sectionLinks = Array.from(navigation.querySelectorAll('a[href^="#"]'));
+const pageSections = Array.from(document.querySelectorAll('main > section[id]'));
+let navigationFrame = false;
+function updateCurrentSection() {
+  navigationFrame = false;
+  const readingLine = document.querySelector('.header').getBoundingClientRect().height + 80;
+  let activeId = '';
+  pageSections.forEach(section => {
+    if (section.getBoundingClientRect().top <= readingLine) activeId = section.id;
+  });
+  sectionLinks.forEach(link => {
+    if (link.getAttribute('href') === `#${activeId}`) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
+}
+function scheduleNavigationUpdate() {
+  if (!navigationFrame) { navigationFrame = true; requestAnimationFrame(updateCurrentSection); }
+}
+window.addEventListener('scroll', scheduleNavigationUpdate, { passive: true });
+window.addEventListener('resize', scheduleNavigationUpdate);
+window.addEventListener('pageshow', scheduleNavigationUpdate);
+updateCurrentSection();
