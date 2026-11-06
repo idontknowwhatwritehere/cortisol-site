@@ -77,3 +77,23 @@ themeToggle.addEventListener('click', () => {
   try { localStorage.setItem('rapid-theme', next); } catch (_) {}
 });
 themePreference.addEventListener('change', event => { if (!themeSelected) applyTheme(event.matches ? 'dark' : 'light'); });
+
+// Галерея компонентов: ручное переключение, включая клавиши стрелок.
+const productGallery = document.querySelector('.product-gallery');
+if (productGallery) {
+  const slides = Array.from(productGallery.querySelectorAll('.gallery-slide'));
+  let currentSlide = 0;
+  function showProductSlide(index) {
+    currentSlide = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => { slide.hidden = i !== currentSlide; });
+    productGallery.querySelector('.gallery-status').textContent = `${currentSlide + 1} / ${slides.length} · ${slides[currentSlide].querySelector('strong').textContent}`;
+  }
+  productGallery.querySelector('.gallery-prev').addEventListener('click', () => showProductSlide(currentSlide - 1));
+  productGallery.querySelector('.gallery-next').addEventListener('click', () => showProductSlide(currentSlide + 1));
+  productGallery.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault();
+      showProductSlide(currentSlide + (event.key === 'ArrowRight' ? 1 : -1));
+    }
+  });
+}
