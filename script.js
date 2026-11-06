@@ -1,5 +1,5 @@
 'use strict';
-// Замените на утверждённое название проекта. Текст title и метатеги — в index.html.
+// Название продукта и контакт команды.
 const PROJECT_NAME = 'Rapid Cortisol';
 // Текущий контактный адрес проекта.
 const CONTACT_EMAIL = 'varombaeva@mail.ru';
@@ -23,10 +23,13 @@ if (validContact) {
   document.querySelectorAll('[data-contact]').forEach(el => { const link = document.createElement('a'); link.href = `mailto:${CONTACT_EMAIL}`; link.textContent = CONTACT_EMAIL; el.replaceChildren(link); });
   status.textContent = '';
 }
+form.elements.message.addEventListener('input', () => form.elements.message.setCustomValidity(''));
 form.addEventListener('submit', event => {
   event.preventDefault();
   if (!validContact) { status.textContent = 'Email ещё не настроен. Подготовка письма недоступна.'; return; }
   if (!form.reportValidity()) return;
+  const message = form.elements.message;
+  if (!message.value.trim()) { message.setCustomValidity('Введите сообщение.'); message.reportValidity(); return; }
   const data = new FormData(form);
   const body = `Имя: ${data.get('name')}\nEmail для ответа: ${data.get('email')}\n\n${data.get('message')}`;
   window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Обращение с сайта ${PROJECT_NAME}`)}&body=${encodeURIComponent(body)}`;
