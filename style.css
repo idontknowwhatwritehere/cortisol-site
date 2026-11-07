@@ -622,3 +622,5 @@ h1,h2,h3{text-wrap:balance}.lead,.grant-text{text-wrap:pretty}.button{min-height
 .cassette-render img{display:block;width:100%;height:100%;object-fit:contain}
 
 .adapter-render img{width:85%;height:85%;margin:auto}
+
+.header nav .nav-app{background:#174c55;color:#fff;border-color:transparent;box-shadow:0 5px 14px #123e4914;transition:background-color .2s}.header nav .nav-app:hover{background:#246c73;color:#fff}.hero .button.secondary{box-shadow:none;background:transparent}
