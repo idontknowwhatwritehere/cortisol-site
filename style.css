@@ -618,3 +618,5 @@ h1,h2,h3{text-wrap:balance}.lead,.grant-text{text-wrap:pretty}.button{min-height
 @media(max-width:540px){.footer{gap:12px;grid-template-columns:1fr}.footer>.footer-contacts{grid-column:1;grid-row:auto;text-align:left;justify-content:flex-start}.footer-contacts strong{flex-basis:auto}.footer nav{grid-row:auto;justify-content:flex-start;gap:4px 14px}.footer-contacts p:last-child{flex-basis:auto}.footer .brand-logo{width:32px;height:36px}}
 
 .adapter-render img{display:block;width:100%;height:100%;object-fit:contain}.adapter-render{overflow:visible}
+
+.cassette-render img{display:block;width:100%;height:100%;object-fit:contain}
