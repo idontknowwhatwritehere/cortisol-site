@@ -626,3 +626,10 @@ h1,h2,h3{text-wrap:balance}.lead,.grant-text{text-wrap:pretty}.button{min-height
 .header nav .nav-app{background:#174c55;color:#fff;border-color:transparent;box-shadow:0 5px 14px #123e4914;transition:background-color .2s}.header nav .nav-app:hover{background:#246c73;color:#fff}.hero .button.secondary{box-shadow:none;background:transparent}
 
 .phone-render img{display:block;width:100%;height:100%;object-fit:contain}
+
+/* Keep raster mockups inside the artwork slot, independently of intrinsic size. */
+.concept-art{position:relative;min-width:0;min-height:0}
+.concept-art>img{position:absolute;inset:0;display:block;min-width:0;min-height:0;max-width:100%;max-height:100%;object-fit:contain;margin:auto}
+.phone-render img,.cassette-render img{width:100%;height:100%}
+.adapter-render img{width:85%;height:85%}
+.gallery-slide figcaption{position:relative;z-index:1}.gallery-dots,.gallery-bottom{position:relative;z-index:2}
