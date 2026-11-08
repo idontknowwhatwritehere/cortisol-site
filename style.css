@@ -694,4 +694,5 @@ h1,h2,h3{text-wrap:balance}.lead,.grant-text{text-wrap:pretty}.button{min-height
 @media(max-width:800px){.gallery-controls .gallery-prev{left:0}.gallery-controls button{width:44px}}
 @media(prefers-reduced-motion:reduce){.gallery-controls button:before{transition:none}}
 
-.product-kit{margin:28px 0 24px;overflow:hidden;border-radius:20px;background:#fff}.product-kit img{display:block;width:100%;height:auto}@media(max-width:540px){.product-kit{margin:22px 0;border-radius:12px}}
+
+.product-kit{margin:28px 0 24px}.product-kit img{display:block;width:100%;height:auto}@media(max-width:540px){.product-kit{margin:22px 0}}
