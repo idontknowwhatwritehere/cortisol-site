@@ -813,9 +813,9 @@ h1,h2,h3{text-wrap:balance}.lead,.grant-text{text-wrap:pretty}.button{min-height
 /* Final demonstration screen over the captured photo. */
 .demo-screen{position:relative}
 .demo-result{position:absolute;z-index:4;inset:36px 0 12px;height:auto;margin:0;padding:28px 18px;border-radius:24px;background:#08100edb;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);gap:14px;text-align:center;pointer-events:none}
-.demo-result-icon{width:64px;height:64px;fill:none;stroke:#ff737b;stroke-width:3;stroke-linecap:round;margin-bottom:8px}
+.demo-result-icon{width:64px;height:64px;fill:none;stroke:#7ae6ba;stroke-width:3;stroke-linecap:round;margin-bottom:8px}
 .demo-result .demo-result-label{font-size:17px;font-weight:600;color:#f4faf8;line-height:1.4}
-.demo-result strong{font-size:34px;font-weight:800;line-height:1.2;color:#ff737b;letter-spacing:-1px}
+.demo-result strong{font-size:34px;font-weight:800;line-height:1.2;color:#7ae6ba;letter-spacing:-1px}
 .demo-result small{font-size:11px;color:#d0dcd6;margin-top:18px}
 
 @media(min-width:801px){
