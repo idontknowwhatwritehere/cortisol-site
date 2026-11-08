@@ -680,3 +680,5 @@ h1,h2,h3{text-wrap:balance}.lead,.grant-text{text-wrap:pretty}.button{min-height
 @media(hover:none),(pointer:coarse){.gallery-controls button{opacity:.6;min-width:44px}}
 @media(max-width:800px){.gallery-controls{left:0;right:0}.gallery-controls .gallery-prev{transform:none}.gallery-controls button{width:44px}}
 @media(prefers-reduced-motion:reduce){.gallery-controls button{transition:none}}
+
+@media(min-width:801px){.gallery-controls .gallery-prev{transform:translateX(-24px)}}
