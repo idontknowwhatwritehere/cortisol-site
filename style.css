@@ -850,3 +850,8 @@ h1,h2,h3{text-wrap:balance}.lead,.grant-text{text-wrap:pretty}.button{min-height
 .product-kit>img{filter:drop-shadow(0 0 24px rgba(58,190,142,.12))}
 .supplied-logo img,.footer-partners img,.brand-logo{filter:drop-shadow(0 0 12px rgba(58,190,142,.16))}
 .demo-phone{box-shadow:0 0 65px 15px rgba(58,190,142,.14),0 22px 50px #123e4924}
+
+/* Draw the demo menu consistently across platforms. */
+.demo-menu-icon{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:4px;width:24px;height:24px;padding:3px;color:#cbdcd6}
+.demo-menu-icon i{display:block;width:18px;height:2px;border-radius:2px;background:currentColor}
+.demo-menu-icon i:nth-child(2){width:13px}
