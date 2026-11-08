@@ -681,4 +681,15 @@ h1,h2,h3{text-wrap:balance}.lead,.grant-text{text-wrap:pretty}.button{min-height
 @media(max-width:800px){.gallery-controls{left:0;right:0}.gallery-controls .gallery-prev{transform:none}.gallery-controls button{width:44px}}
 @media(prefers-reduced-motion:reduce){.gallery-controls button{transition:none}}
 
-@media(min-width:801px){.gallery-controls .gallery-prev{transform:translateX(-44px)}}
+
+
+/* Keep moved controls above neighboring content and show their actual click zones. */
+.product-gallery{z-index:2}.gallery-controls{z-index:5;display:block;overflow:visible}
+.gallery-controls button{position:absolute;top:0;bottom:0;width:56px;height:100%;isolation:isolate;transform:none}
+.gallery-controls .gallery-prev{left:-44px;transform:none}.gallery-controls .gallery-next{right:0}
+.gallery-controls button:before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:50%;background:radial-gradient(ellipse at center,rgba(23,110,107,.12),rgba(23,110,107,.045) 45%,transparent 75%);opacity:0;transition:opacity .2s ease}
+.gallery-controls button:hover:before,.gallery-controls button:focus-visible:before{opacity:1}
+:root[data-theme=dark] .gallery-controls button:before{background:radial-gradient(ellipse at center,rgba(127,221,199,.14),rgba(127,221,199,.045) 45%,transparent 75%)}
+.gallery-controls button svg{pointer-events:none}
+@media(max-width:800px){.gallery-controls .gallery-prev{left:0}.gallery-controls button{width:44px}}
+@media(prefers-reduced-motion:reduce){.gallery-controls button:before{transition:none}}
