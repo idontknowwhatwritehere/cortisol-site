@@ -753,7 +753,7 @@ h1,h2,h3{text-wrap:balance}.lead,.grant-text{text-wrap:pretty}.button{min-height
 .demo-empty{font-size:12px;color:#a9bcb5;animation:demo-empty var(--demo-duration) infinite}
 .demo-photo{position:absolute;width:100%;height:100%;object-fit:contain;object-position:center;background:#101716;opacity:0;animation:demo-photo var(--demo-duration) infinite}
 .demo-selection{position:absolute;width:0;height:0;left:42%;top:60%;border:2px dashed #65e1b5;opacity:0;animation:demo-selection var(--demo-duration) infinite}
-.demo-touch{position:absolute;z-index:3;width:22px;height:22px;border-radius:50%;background:#c1fbe87a;border:1px solid #e2fff0;box-shadow:0 0 0 7px #bcf9e31c;left:50%;top:261px;opacity:0;animation:demo-touch var(--demo-duration) infinite}
+.demo-touch{position:absolute;z-index:3;width:22px;height:22px;border-radius:50%;background:#c1fbe87a;border:1px solid #e2fff0;box-shadow:0 0 0 7px #bcf9e31c;left:50%;top:var(--demo-upload-y);pointer-events:none;opacity:0;animation:demo-touch var(--demo-duration) infinite}
 .demo-upload,.demo-analyze{border-radius:10px;text-align:center;padding:10px 8px;font-size:11px;font-weight:700;line-height:1.4;margin-top:12px}
 .demo-upload{background:#ffffff18;color:#e2ede8}
 .demo-analyze{background:#48d7a1;color:#072d20;animation:demo-analyze var(--demo-duration) infinite}
@@ -769,7 +769,17 @@ h1,h2,h3{text-wrap:balance}.lead,.grant-text{text-wrap:pretty}.button{min-height
 @keyframes demo-empty{0%,18%,96%,100%{opacity:1}23%,92%{opacity:0}}
 @keyframes demo-photo{0%,18%,96%,100%{opacity:0}23%,92%{opacity:1}}
 @keyframes demo-selection{0%,32%,96%,100%{opacity:0;width:0;height:0}36%{opacity:1;width:0;height:0}49%,92%{opacity:1;width:16%;height:6%}}
-@keyframes demo-touch{0%,7%,92%,100%{opacity:0;left:50%;top:261px}12%,18%{opacity:1;left:50%;top:261px;transform:scale(1)}20%{opacity:1;transform:scale(.7)}25%{opacity:0;left:50%;top:261px}33%,36%{opacity:1;left:42%;top:60%;transform:scale(1)}49%,52%{opacity:1;left:58%;top:66%}59%,63%{opacity:1;left:50%;top:309px;transform:scale(1)}65%{opacity:1;left:50%;top:309px;transform:scale(.7)}69%,90%{opacity:0;left:50%;top:309px}}
+@keyframes demo-touch{
+0%,7%,92%,100%{opacity:0;left:var(--demo-upload-x,50%);top:var(--demo-upload-y);transform:translate(-50%,-50%) scale(1)}
+12%,18%{opacity:1;left:var(--demo-upload-x,50%);top:var(--demo-upload-y);transform:translate(-50%,-50%) scale(1)}
+20%{opacity:1;left:var(--demo-upload-x,50%);top:var(--demo-upload-y);transform:translate(-50%,-50%) scale(.7)}
+25%{opacity:0;left:var(--demo-upload-x,50%);top:var(--demo-upload-y);transform:translate(-50%,-50%) scale(1)}
+33%,36%{opacity:1;left:42%;top:60%;transform:translate(-50%,-50%) scale(1)}
+49%,52%{opacity:1;left:58%;top:66%;transform:translate(-50%,-50%) scale(1)}
+59%,63%{opacity:1;left:var(--demo-analyze-x,50%);top:var(--demo-analyze-y);transform:translate(-50%,-50%) scale(1)}
+65%{opacity:1;left:var(--demo-analyze-x,50%);top:var(--demo-analyze-y);transform:translate(-50%,-50%) scale(.7)}
+69%,90%{opacity:0;left:var(--demo-analyze-x,50%);top:var(--demo-analyze-y);transform:translate(-50%,-50%) scale(1)}
+}
 @keyframes demo-analyze{0%,54%,96%,100%{opacity:.45}59%,92%{opacity:1}}
 @keyframes demo-result{0%,68%,96%,100%{opacity:0;transform:translateY(5px)}74%,92%{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){.app-demo *{animation:none!important}.demo-empty,.demo-touch{display:none}.demo-photo,.demo-result{opacity:1}.demo-selection{opacity:1;width:16%;height:6%}.demo-result{transform:none}.demo-toggle{display:none}}

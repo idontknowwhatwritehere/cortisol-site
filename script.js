@@ -166,3 +166,26 @@ if (demoToggle) demoToggle.addEventListener('click', () => {
   demoToggle.setAttribute('aria-pressed', String(paused));
   demoToggle.textContent = paused ? 'Продолжить' : 'Пауза';
 });
+
+// Keep animated taps centered on the buttons as the phone resizes.
+document.querySelectorAll('.app-demo').forEach((demo) => {
+  const camera = demo.querySelector('.demo-camera');
+  const upload = demo.querySelector('.demo-upload');
+  const analyze = demo.querySelector('.demo-analyze');
+  if (!camera || !upload || !analyze) return;
+  function syncDemoTapTargets() {
+    const origin = camera.getBoundingClientRect();
+    [['upload', upload], ['analyze', analyze]].forEach(([name, button]) => {
+      const target = button.getBoundingClientRect();
+      camera.style.setProperty(`--demo-${name}-x`, `${target.left + target.width / 2 - origin.left - camera.clientLeft}px`);
+      camera.style.setProperty(`--demo-${name}-y`, `${target.top + target.height / 2 - origin.top - camera.clientTop}px`);
+    });
+  }
+  syncDemoTapTargets();
+  if ('ResizeObserver' in window) {
+    const observer = new ResizeObserver(syncDemoTapTargets);
+    [camera, upload, analyze, demo].forEach((element) => observer.observe(element));
+  }
+  window.addEventListener('resize', syncDemoTapTargets);
+  if (document.fonts) document.fonts.ready.then(syncDemoTapTargets);
+});
