@@ -700,3 +700,5 @@ h1,h2,h3{text-wrap:balance}.lead,.grant-text{text-wrap:pretty}.button{min-height
 .product-overview{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:40px}.product-overview .product-kit{margin:0;min-width:0}.product-overview .large-text{margin:24px 0;max-width:36ch}.product-overview .section-heading{margin-bottom:0}.product-overview h2{font-size:clamp(28px,3.2vw,44px)}@media(max-width:800px){.product-overview{grid-template-columns:1fr;gap:26px}.product-overview .product-kit{grid-row:2}}
 
 .product-kit figcaption{font-size:15px;line-height:1.65;color:var(--muted)}.product-overview-copy{display:flex;flex-direction:column;gap:30px}.product-overview-copy .large-text{margin:0;font-size:25px;line-height:1.55;letter-spacing:-.5px}.product-overview-copy .product-highlights{margin:0}@media(max-width:800px){.product-overview-copy{gap:24px}.product-overview-copy .large-text{font-size:22px}}@media(max-width:540px){.product-overview-copy .large-text{font-size:21px}}
+
+.product-kit figcaption{font-size:18px;line-height:1.7;margin-top:28px}@media(max-width:540px){.product-kit figcaption{font-size:17px;margin-top:24px}}
