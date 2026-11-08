@@ -157,3 +157,12 @@ function syncHeaderHeight() {
 syncHeaderHeight();
 if ('ResizeObserver' in window) new ResizeObserver(syncHeaderHeight).observe(siteHeader);
 else window.addEventListener('resize', syncHeaderHeight);
+
+const demoToggle = document.querySelector('.demo-toggle');
+if (demoToggle) demoToggle.addEventListener('click', () => {
+  const demo = demoToggle.closest('.app-demo');
+  const paused = demo.dataset.paused !== 'true';
+  demo.dataset.paused = String(paused);
+  demoToggle.setAttribute('aria-pressed', String(paused));
+  demoToggle.textContent = paused ? 'Продолжить' : 'Пауза';
+});
