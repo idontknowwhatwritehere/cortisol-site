@@ -716,7 +716,7 @@ h1,h2,h3{text-wrap:balance}.lead,.grant-text{text-wrap:pretty}.button{min-height
 .steps li:not(:last-child)::after{width:10px;height:10px;border-top:2px solid;border-right:2px solid;right:-35px;top:calc(50% - 4px);transform:rotate(45deg)}
 @media(max-width:800px) and (min-width:541px){.steps{gap:30px}.steps li:not(:last-child)::before{width:18px;right:-25px}.steps li:not(:last-child)::after{right:-25px}}
 @media(max-width:540px){.steps{gap:38px}.steps .step-num{width:34px;height:34px;font-size:15px;border-radius:9px}.steps li:not(:last-child)::before{width:2px;height:22px;right:auto;left:calc(50% - 1px);top:auto;bottom:-30px}.steps li:not(:last-child)::after{right:auto;left:calc(50% - 5px);top:auto;bottom:-30px;transform:rotate(135deg)}}
-.step-illustration{display:block;width:100%;height:auto;aspect-ratio:2/1;object-fit:contain;margin:8px 0 0}
+.step-illustration{display:block;width:100%;height:auto;aspect-ratio:8/5;object-fit:contain;margin:16px 0 0}
 
 .product-highlights li{font-size:14px;font-weight:600;color:var(--ink)}
 @media(max-width:540px){.product-highlights li{font-size:13px}}
