@@ -23,24 +23,37 @@ if (validContact) {
   document.querySelectorAll('[data-contact]').forEach(el => { const link = document.createElement('a'); link.href = `mailto:${CONTACT_EMAIL}`; link.textContent = CONTACT_EMAIL; el.replaceChildren(link); });
   status.textContent = '';
 }
-form.elements.message.addEventListener('input', () => form.elements.message.setCustomValidity(''));
+const MESSAGE_MAX = 1500;
+const MESSAGE_MIN = 10;
+const counter = document.querySelector('#msg-count');
+const fields = ['name', 'email', 'message'].map(n => form.elements[n]);
+const clean = value => value.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '').trim();
+const updateCounter = () => { if (counter) counter.textContent = `${form.elements.message.value.length} / ${MESSAGE_MAX}`; };
+fields.forEach(field => field.addEventListener('input', () => { field.setCustomValidity(''); status.textContent = ''; }));
+form.elements.message.addEventListener('input', updateCounter);
+updateCounter();
 form.addEventListener('submit', event => {
   event.preventDefault();
   if (!validContact) { status.textContent = 'Email ещё не настроен. Подготовка письма недоступна.'; return; }
+  const name = form.elements.name, email = form.elements.email, message = form.elements.message;
+  if (clean(name.value).length < 2) name.setCustomValidity('Введите имя (не короче 2 символов).');
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim())) email.setCustomValidity('Введите корректный email.');
+  const text = clean(message.value);
+  if (text.length < MESSAGE_MIN) message.setCustomValidity(`Сообщение должно быть не короче ${MESSAGE_MIN} символов.`);
+  else if (text.length > MESSAGE_MAX) message.setCustomValidity(`Сообщение не должно превышать ${MESSAGE_MAX} символов.`);
   if (!form.reportValidity()) return;
-  const message = form.elements.message;
-  if (!message.value.trim()) { message.setCustomValidity('Введите сообщение.'); message.reportValidity(); return; }
-  const data = new FormData(form);
-  const body = `Имя: ${data.get('name')}\nEmail для ответа: ${data.get('email')}\n\n${data.get('message')}`;
+  const body = `Имя: ${clean(name.value)}\nEmail для ответа: ${email.value.trim()}\n\n${text}`;
   window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Обращение с сайта ${PROJECT_NAME}`)}&body=${encodeURIComponent(body)}`;
   status.textContent = 'Запрошено открытие почтового приложения. Проверьте письмо и отправьте его самостоятельно. Если приложение не открылось, воспользуйтесь контактным email.';
 });
 const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 if ('IntersectionObserver' in window) {
-  const blocks = document.querySelectorAll('.hero-copy, .hero-art, .section-heading, #product .product-layout, .steps li, .technology-panel, .specs, .research-note, .benefits > div, .benefit-list li, .analyzer-layout > div, #support > .eyebrow, #support > h2, .grant-text, .official-logo, .contact-layout > div, #contact-form');
+  const blocks = document.querySelectorAll('.hero-copy, .section-heading, .steps li, .analyzer-layout > div, #support > .eyebrow, #support > h2, .grant-text, .official-logo, .contact-layout > div, #contact-form');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      entry.target.classList.toggle('visible', entry.isIntersecting);
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
     });
   }, { threshold: 0 });
   function configureMotion() {
@@ -64,7 +77,6 @@ let themeSelected = false;
 try { themeSelected = ['dark', 'light'].includes(localStorage.getItem('rapid-theme')); } catch (_) {}
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
-  document.querySelectorAll('.brand-logo').forEach(logo => { logo.src = theme === 'dark' ? 'assets/project-logo-dark.svg?v=17' : 'assets/project-logo.svg?v=17'; });
   const dark = theme === 'dark';
   themeToggle.setAttribute('aria-pressed', String(dark));
   themeToggle.setAttribute('aria-label', dark ? 'Включить светлую тему' : 'Включить тёмную тему');
@@ -158,6 +170,14 @@ syncHeaderHeight();
 if ('ResizeObserver' in window) new ResizeObserver(syncHeaderHeight).observe(siteHeader);
 else window.addEventListener('resize', syncHeaderHeight);
 
+// Анимация демо не работает, пока блок вне экрана.
+const appDemo = document.querySelector('.app-demo');
+if (appDemo && 'IntersectionObserver' in window) {
+  new IntersectionObserver(entries => {
+    entries.forEach(entry => { appDemo.dataset.offscreen = String(!entry.isIntersecting); });
+  }).observe(appDemo);
+}
+
 const demoToggle = document.querySelector('.demo-toggle');
 if (demoToggle) demoToggle.addEventListener('click', () => {
   const demo = demoToggle.closest('.app-demo');
@@ -189,3 +209,5 @@ document.querySelectorAll('.app-demo').forEach((demo) => {
   window.addEventListener('resize', syncDemoTapTargets);
   if (document.fonts) document.fonts.ready.then(syncDemoTapTargets);
 });
+
+document.addEventListener('dragstart', event => { if (event.target instanceof HTMLImageElement) event.preventDefault(); });

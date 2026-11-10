@@ -1,6 +1,6 @@
 # Rapid Cortisol
 
-Статический сайт на HTML, CSS и JavaScript: https://idontknowwhatwritehere.github.io/cortisol-site/
+Статический сайт на HTML, CSS и JavaScript: https://vi-anhim.online/ (CNAME, canonical и og:url указывают на vi-anhim.online; приложение — https://app.vi-anhim.online/)
 
 ## Обновление
 
@@ -17,7 +17,6 @@
 - style.css — обе темы, адаптивность и оформление.
 - theme.js — выбор темы до отрисовки страницы.
 - script.js — переключатель темы, меню и контактная форма.
-- assets/research-slide.jpg и support-source.jpg — предоставленные изображения.
 - FACT_CHECK.md — проверка содержания и ограничения.
 - .nojekyll — отключение Jekyll на GitHub Pages.
 
@@ -29,7 +28,11 @@ GitHub Pages публикует корень ветки main. Все пути о
 
 ## Контакты
 
-В script.js необходимо заполнить CONTACT_EMAIL реальным адресом Виктории. Пока он пуст, отправка отключена. После настройки форма передаёт письмо почтовому приложению через mailto; посетитель сам подтверждает отправку. Серверной отправки и хранения данных нет.
+CONTACT_EMAIL в script.js задан. Форма проверяет имя (от 2 символов), email и сообщение (10–1500 символов) и открывает почтовое приложение через mailto; письмо посетитель отправляет сам. Сервер данные не получает.
+
+## Безопасность
+
+CSP и Referrer Policy заданы через `<meta>` в index.html: скрипты и стили только со своего origin, `form-action`, `base-uri`, `object-src` запрещены. Заголовки HTTP (в т. ч. `frame-ancestors`, HSTS, `X-Content-Type-Options`) GitHub Pages настраивать не позволяет, поэтому защита от встраивания в iframe не обеспечивается. Inline-скрипты и inline-стили добавлять нельзя — CSP их заблокирует.
 
 ## Проверки
 
